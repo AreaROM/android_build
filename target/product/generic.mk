@@ -44,6 +44,7 @@ PRODUCT_PACKAGES := \
     SyncProvider
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core.mk)
+$(call inherit-product, vendor/arearom/products/common_full.mk)
 
 # Overrides
 PRODUCT_BRAND := generic
