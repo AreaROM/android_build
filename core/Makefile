@@ -1058,7 +1058,7 @@ ifneq ($(TARGET_CUSTOM_RELEASETOOL),)
 	$(hide) $(TARGET_CUSTOM_RELEASETOOL)
 else
 	@echo "Running releasetool..."
-	$(hide) ./vendor/cm/tools/squisher
+	$(hide) ./vendor/arearom/tools/squisher
 endif
 
 # -----------------------------------------------------------------
