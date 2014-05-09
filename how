@@ -1,0 +1,57 @@
+[1mdiff --git a/core/tasks/vendor_module_check.mk b/core/tasks/vendor_module_check.mk[m
+[1mindex 95ea6be..90b1946 100644[m
+[1m--- a/core/tasks/vendor_module_check.mk[m
+[1m+++ b/core/tasks/vendor_module_check.mk[m
+[36m@@ -53,23 +53,23 @@[m [m_vendor_module_owner_info :=[m
+ ifneq (,$(filter true owner all, $(PRODUCTS.$(INTERNAL_PRODUCT).PRODUCT_RESTRICT_VENDOR_FILES)))[m
+ [m
+ ifneq (,$(filter vendor/%, $(PRODUCT_PACKAGE_OVERLAYS) $(DEVICE_PACKAGE_OVERLAYS)))[m
+[31m-$(error Error: Product "$(TARGET_PRODUCT)" cannot have overlay in vendor tree: \[m
+[32m+[m[32m$(warning Warning: Product "$(TARGET_PRODUCT)" cannot have overlay in vendor tree: \[m
+     $(filter vendor/%, $(PRODUCT_PACKAGE_OVERLAYS) $(DEVICE_PACKAGE_OVERLAYS)))[m
+ endif[m
+ _vendor_check_copy_files := $(filter vendor/%, $(PRODUCT_COPY_FILES))[m
+[31m-#ifneq (,$(_vendor_check_copy_files))[m
+[31m-#$(foreach c, $(_vendor_check_copy_files), \[m
+[31m-#  $(if $(filter $(_vendor_owner_whitelist), $(call word-colon,3,$(c))),,\[m
+[31m-#    $(error Error: vendor PRODUCT_COPY_FILES file "$(c)" has unknown owner))\[m
+[31m-#  $(eval _vendor_module_owner_info += $(call word-colon,2,$(c)):$(call word-colon,3,$(c))))[m
+[31m-#endif[m
+[32m+[m[32mifneq (,$(_vendor_check_copy_files))[m
+[32m+[m[32m$(foreach c, $(_vendor_check_copy_files), \[m
+[32m+[m[32m  $(if $(filter $(_vendor_owner_whitelist), $(call word-colon,3,$(c))),,\[m
+[32m+[m[32m    $(warning Warning: vendor PRODUCT_COPY_FILES file "$(c)" has unknown owner))\[m
+[32m+[m[32m  $(eval _vendor_module_owner_info += $(call word-colon,2,$(c)):$(call word-colon,3,$(c))))[m
+[32m+[m[32mendif[m
+ _vendor_check_copy_files :=[m
+ [m
+ $(foreach m, $(_vendor_check_modules), \[m
+   $(if $(filter vendor/%, $(ALL_MODULES.$(m).PATH)),\[m
+     $(if $(filter-out FAKE, $(ALL_MODULES.$(m).CLASS)),\[m
+       $(if $(filter $(_vendor_owner_whitelist), $(ALL_MODULES.$(m).OWNER)),,\[m
+[31m-        $(error Error: vendor module "$(m)" in $(ALL_MODULES.$(m).PATH) with unknown owner \[m
+[32m+[m[32m        $(warning Warning: vendor module "$(m)" in $(ALL_MODULES.$(m).PATH) with unknown owner \[m
+           "$(ALL_MODULES.$(m).OWNER)" in product "$(TARGET_PRODUCT)"))\[m
+       $(if $(ALL_MODULES.$(m).INSTALLED),\[m
+         $(eval _vendor_module_owner_info += $(patsubst $(PRODUCT_OUT)/%,%,$(ALL_MODULES.$(m).INSTALLED)):$(ALL_MODULES.$(m).OWNER))))))[m
+[36m@@ -85,7 +85,7 @@[m [m$(foreach m, $(_vendor_check_modules), \[m
+     $(if $(filter-out FAKE, $(ALL_MODULES.$(m).CLASS)),\[m
+       $(if $(filter-out ,$(ALL_MODULES.$(m).INSTALLED)),\[m
+         $(if $(filter $(TARGET_OUT_VENDOR)/% $(HOST_OUT)/%, $(ALL_MODULES.$(m).INSTALLED)),,\[m
+[31m-          $(error Error: vendor module "$(m)" in $(ALL_MODULES.$(m).PATH) \[m
+[32m+[m[32m          $(warning Warning: vendor module "$(m)" in $(ALL_MODULES.$(m).PATH) \[m
+             in product "$(TARGET_PRODUCT)" being installed to \[m
+             $(ALL_MODULES.$(m).INSTALLED) which is not in the vendor tree))))))[m
+ [m
+[1mdiff --git a/target/product/base.mk b/target/product/base.mk[m
+[1mindex 0d052b5..cc95308 100644[m
+[1m--- a/target/product/base.mk[m
+[1m+++ b/target/product/base.mk[m
+[36m@@ -59,7 +59,6 @@[m [mPRODUCT_PACKAGES += \[m
+     libldnhncr \[m
+     libmedia \[m
+     libmedia_jni \[m
+[31m-    libmediaplayerservice \[m
+     libmtp \[m
+     libnetd_client \[m
+     libnetlink \[m
