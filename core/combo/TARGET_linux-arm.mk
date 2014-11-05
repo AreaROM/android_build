@@ -61,7 +61,8 @@ TARGET_arm_CFLAGS :=    -O2 \
                         -fomit-frame-pointer \
                         -fstrict-aliasing    \
                         -funswitch-loops     \
-                        -finline-limit=300
+                        -finline-limit=300 \
+                        -ffast-math 
 
 # Modules can choose to compile some source as thumb. As
 # non-thumb enabled targets are supported, this is treated
@@ -72,7 +73,8 @@ TARGET_thumb_CFLAGS :=  -mthumb \
                         -Os \
                         -fomit-frame-pointer \
                         -fno-strict-aliasing \
-                        -finline-limit=64
+                        -finline-limit=64 \
+                        -ffast-math    
 else
 TARGET_thumb_CFLAGS := $(TARGET_arm_CFLAGS)
 endif
