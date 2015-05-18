@@ -108,6 +108,7 @@ function setpaths()
     CODE_REVIEWS=
     prebuiltdir=$(getprebuilt)
     export ANDROID_EABI_TOOLCHAIN=$prebuiltdir/toolchain/arm-eabi-4.9-linaro/bin
+    export ANDROID_KERNEL_TOOLCHAIN_PATH=$prebuiltdir/toolchain/arm-eabi-4.6/bin
     export ANDROID_TOOLCHAIN=$ANDROID_EABI_TOOLCHAIN
     export ANDROID_QTOOLS=$T/development/emulator/qtools
     export ANDROID_BUILD_PATHS=:$(get_build_var ANDROID_BUILD_PATHS):$ANDROID_QTOOLS:$ANDROID_TOOLCHAIN:$ANDROID_EABI_TOOLCHAIN$CODE_REVIEWS
