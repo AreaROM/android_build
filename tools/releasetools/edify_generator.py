@@ -348,6 +348,29 @@ class EdifyGenerator(object):
       self.script.append('unmount("%s");' % (p,))
     self.mounts = set()
 
+  def Banner(self):
+    self.script.append('ui_print("*******************************************");')
+    self.script.append('ui_print("                AAAAAAAAA                  ");')
+    self.script.append('ui_print("             AAAAAAAAAAAAAAA               ");')
+    self.script.append('ui_print("           AAAAAAAAAAAAAAAAAAA             ");')
+    self.script.append('ui_print("          AAAAVVAAAAAAAAAAVVAAAA           ");')
+    self.script.append('ui_print("         AAAAV  VAAAAAAAAV  VAAAA          ");')
+    self.script.append('ui_print("         AAAV    VAAAAAAV    VAAA          ");')
+    self.script.append('ui_print("         AAAA    AAAAAAAA    AAAA          ");')
+    self.script.append('ui_print("          AAA    AAAAAAAA    AAA           ");')
+    self.script.append('ui_print("           VVA  AAAAAAAAAA  AVV            ");')
+    self.script.append('ui_print("            VVVVAAAAAAAAAAVVVV             ");')
+    self.script.append('ui_print("              VVVVVV/|\VVVVVV              ");')
+    self.script.append('ui_print("               VVVVV\|/VVVVV               ");')
+    self.script.append('ui_print("                VVVVVVVVVV                 ");')
+    self.script.append('ui_print("                  VVVVVV                   ");')
+    self.script.append('ui_print("    _                   ____   ___  __  __ ");')
+    self.script.append('ui_print("   / \   _ __ ___  __ _|  _ \ / _ \|  \/  |");')
+    self.script.append('ui_print("  / _ \ |  __/ _ \/ _  | |_| | | | | |\/| |");')
+    self.script.append('ui_print(" / ___ \| | |  __/ (_| |  _ <| |_| | |  | |");')
+    self.script.append('ui_print("/_/   \_\_|  \___|\__,_|_| \_\\___/|_|  |_|");')
+    self.script.append('ui_print("*******************************************");')
+
   def AddToZip(self, input_zip, output_zip, input_path=None):
     """Write the accumulated script to the output_zip file.  input_zip
     is used as the source for the 'updater' binary needed to run
