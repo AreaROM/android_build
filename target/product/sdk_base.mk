@@ -25,7 +25,6 @@ PRODUCT_PACKAGES := \
 	Dialer \
 	EmulatorSmokeTests \
 	Fallback \
-	Gallery \
 	GestureBuilder \
 	LegacyCamera \
 	librs_jni \
