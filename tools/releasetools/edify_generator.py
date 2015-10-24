@@ -377,7 +377,7 @@ class EdifyGenerator(object):
     self.script.append('ui_print("   / \   _ __ ___  __ _|  _ \ / _ \|  \/  |");')
     self.script.append('ui_print("  / _ \ |  __/ _ \/ _  | |_| | | | | |\/| |");')
     self.script.append('ui_print(" / ___ \| | |  __/ (_| |  _ <| |_| | |  | |");')
-    self.script.append('ui_print("/_/   \_\_|  \___|\__,_|_| \_\\___/|_|  |_|");')
+    self.script.append('ui_print("/_/   \_\_|  \___|\__,_|_| \_|\___/|_|  |_|");')
     self.script.append('ui_print("*******************************************");')
 
   def AddToZip(self, input_zip, output_zip, input_path=None):
